@@ -1,3 +1,8 @@
+/*
+    Path: '/api/productos'
+
+*/
+
 const { Router } = require('express');
 
 const { getProductos, crearProducto, actualizarProducto, eliminarProducto } = require('../controllers/productos');

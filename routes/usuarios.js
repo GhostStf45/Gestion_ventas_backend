@@ -1,3 +1,8 @@
+/*
+    Path: '/api/usuarios'
+
+*/
+
 const { Router } = require('express');
 const { getUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario } = require('../controllers/usuarios');
 

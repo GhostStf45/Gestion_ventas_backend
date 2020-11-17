@@ -1,0 +1,4 @@
+/*
+    Path: '/api/ventas'
+
+*/
