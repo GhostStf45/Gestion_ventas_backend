@@ -21,7 +21,7 @@ const UsuarioSchema = Schema({
     role: {
         type: String,
         required: true,
-        default: 'USER_ROLE'
+        default: 'CLIENT_ROLE'
     },
     numero_telefonico:{
         type: String, 
