@@ -11,7 +11,7 @@ const getProductos = async (req, res = response) => {
             .find({}, 'nombre precio stock')
             .skip(desde)
             .limit(5),
-            Productos.countDocuments()
+            Producto.countDocuments()
     ]);
 
     res.json({
