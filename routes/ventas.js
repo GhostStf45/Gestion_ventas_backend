@@ -11,6 +11,8 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 const {
     getVentas,
     crearVenta,
+    actualizarVenta,
+    borrarVenta
 } = require ('../controllers/ventas');
 
 const router = Router();
@@ -28,5 +30,18 @@ router.post('/',
 
     ] 
 ,crearVenta);
+
+router.put('/:id', 
+    [
+      validarJWT,
+      check('total', 'El total es necesario').not().notEmpty(),
+      check('usuario', 'El usuario id debe de ser valido').isMongoId(),
+      check('producto', 'El producto id debe de ser valido').isMongoId(),
+      validarCampos
+    ] 
+,actualizarVenta);
+
+router.delete('/:id',validarJWT ,borrarVenta);
+
 
 module.exports = router;

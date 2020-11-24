@@ -31,7 +31,68 @@ const crearVenta = async (req, res = response) => {
     }
     
 }
+const actualizarVenta = async (req, res = response) => {
+    const id = req.params.id;
+    const uid = req.uid;
+    try {
+        const  venta = await Venta.findById(id);
+        if(!venta)
+        {
+            res.status(400).json({
+                 ok:true,
+                 msg:'Venta no encontrada por id'
+            });
+        }
+        const cambiosVenta = {
+            ...req.body,
+            usuario: uid
+        }
+        const ventaActualizada = await Venta.findByIdAndUpdate(id, cambiosVenta, {new: true});
+ 
+        res.json({
+            ok:true,
+            venta: ventaActualizada
+        });
+        
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg:'Hable con el administrador'
+        });
+    }
+ 
+ }
+ const borrarVenta = async (req, res = response) => {
+    
+    const id = req.params.id;
+
+    try {
+        const venta = await Venta.findById(id);
+        if(!venta)
+        {
+            res.status(400).json({
+                ok:true,
+                msg:'Venta no encontrada por id'
+            });
+        }
+        await Venta.findByIdAndDelete(id);
+        res.json ({
+            ok: true,
+            msg: 'Venta eliminada'
+        })
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg:'Hable con el administrador'
+        });
+    }
+
+    
+}
+
 module.exports  = {
     getVentas,
-    crearVenta
+    crearVenta,
+    actualizarVenta,
+    borrarVenta
 }
