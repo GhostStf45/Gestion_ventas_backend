@@ -10,6 +10,25 @@ const getVentas = async (req, res = response) => {
        ventas
     })
 }
+const getVentaById = async (req, res = response) => {
+    const id = req.params.id;
+    try {
+        const venta = await Venta.findById(id)
+                            .populate('usuario', 'nombre')
+                            .populate('producto', 'nombre precio')
+        res.json ({
+            ok: true,
+           venta
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.json ({
+            ok: false,
+           msg: 'Hable con el administrador porque no se encontró la venta'
+        })
+    }
+}
 const crearVenta = async (req, res = response) => {
     const uid = req.uid;
     const venta = new Venta ({
@@ -94,5 +113,6 @@ module.exports  = {
     getVentas,
     crearVenta,
     actualizarVenta,
-    borrarVenta
+    borrarVenta,
+    getVentaById
 }

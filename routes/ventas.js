@@ -12,7 +12,8 @@ const {
     getVentas,
     crearVenta,
     actualizarVenta,
-    borrarVenta
+    borrarVenta,
+    getVentaById
 } = require ('../controllers/ventas');
 
 const router = Router();
@@ -42,6 +43,7 @@ router.put('/:id',
 ,actualizarVenta);
 
 router.delete('/:id',validarJWT ,borrarVenta);
+router.get('/:id',validarJWT ,getVentaById);
 
 
 module.exports = router;
