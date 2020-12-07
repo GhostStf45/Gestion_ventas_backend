@@ -22,6 +22,7 @@ app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/productos', require('./routes/productos'));
 app.use('/api/ventas', require('./routes/ventas'));
 app.use('/api/login', require('./routes/auth'));
+app.use('/api/todo', require('./routes/busquedas'));
 
 
 
